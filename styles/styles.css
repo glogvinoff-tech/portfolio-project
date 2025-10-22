@@ -1,77 +1,151 @@
-/* Custom Styles for Portfolio Project */
+/* Custom Styles for Portfolio Project with Modern Adaptive Techniques */
 
-/* Profile Image */
-.profile-image {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    border: 5px solid #fff;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+:root { 
+    color-scheme: light dark; 
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 3rem;
+    --primary-color: #2563eb;
+    --text-color: #1e293b;
+    --text-light: #64748b;
+    --bg-color: #f8fafc;
+    --border-color: #e2e8f0;
 }
 
-/* Project Cards Hover Effect */
+/* Базовые стили для доступности и адаптивности */
+html, body { 
+    height: 100%; 
+    margin: 0;
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Skip Link для клавиатурных пользователей */
+.skip-link{
+    position: absolute;
+    inset-inline-start: 1rem;
+    inset-block-start: -100%;
+    z-index: 10000;
+    padding: .5rem .75rem;
+    background: #111;
+    color: #fff;
+    border-radius: .5rem;
+    text-decoration: none;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible { 
+    inset-block-start: 1rem; 
+}
+
+/* Видимый фокус для доступности */
+:focus-visible { 
+    outline: 3px solid #2563eb; 
+    outline-offset: 2px; 
+}
+
+a, button, input, textarea { 
+    outline-offset: 2px; 
+}
+
+/* Sticky Header с безопасными областями */
+.nav-header {
+    position: sticky;
+    top: 0;
+    padding-block-start: calc(.75rem + env(safe-area-inset-top));
+    padding-block-end: .75rem;
+    padding-inline-start: calc(var(--space-md) + env(safe-area-inset-left));
+    padding-inline-end: calc(var(--space-md) + env(safe-area-inset-right));
+    z-index: 100;
+    isolation: isolate;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1);
+}
+
+/* Profile Image с современными техниками */
+.profile-image {
+    inline-size: clamp(150px, 22vw, 300px);
+    block-size: auto;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/* Плавные размеры с clamp() */
+.hero-heading { 
+    font-size: clamp(1.5rem, 1.1rem + 2vw, 2.5rem); 
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle { 
+    font-size: clamp(1rem, 0.875rem + 0.6vw, 1.25rem); 
+    margin-bottom: 1.5rem;
+}
+
+/* Адаптивная Grid-сетка для проектов */
+.projects-preview { 
+    margin-block: var(--space-xl); 
+}
+
+.projects-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: var(--space-lg);
+}
+
 .project-card {
-    transition: all 0.3s ease;
+    background: #fff;
+    border-radius: .75rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    transition: transform .2s ease, box-shadow .2s ease;
+    min-width: 0; /* разрешаем контенту ужиматься */
     cursor: pointer;
 }
 
-.project-card:hover {
-    transform: translateY(-5px);
+.project-card:hover { 
+    transform: translateY(-5px); 
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Timeline Styles */
-.timeline {
-    position: relative;
-    padding-left: 2rem;
+.project-card_title,
+.project-card_description { 
+    overflow-wrap: anywhere; 
 }
 
-.timeline::before {
-    content: '';
-    position: absolute;
-    left: 1rem;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: #e9ecef;
+/* Контейнерные запросы для компонентов */
+@supports (container-type: inline-size) {
+    .projects-preview {
+        container-type: inline-size;
+        container-name: projects;
+    }
+
+    @container projects (min-width: 640px) {
+        .projects-preview-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @container projects (min-width: 960px) {
+        .projects-preview-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
 }
 
-.timeline-item {
-    position: relative;
-    margin-bottom: 2rem;
+/* Адаптивные изображения */
+.responsive-image {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-.timeline-marker {
-    position: absolute;
-    left: -2rem;
-    top: 0;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: white;
-}
-
-.timeline-content {
-    background: white;
-    padding: 1rem;
-    border-radius: 0.375rem;
-    border-left: 3px solid #0d6efd;
-}
-
-.timeline-item.completed .timeline-content {
-    border-left-color: #198754;
-}
-
-.timeline-item.in-progress .timeline-content {
-    border-left-color: #ffc107;
-}
-
-.timeline-item.planned .timeline-content {
-    border-left-color: #6c757d;
-}
+/* Object-fit демонстрация */
+.object-fit-cover { object-fit: cover; }
+.object-fit-contain { object-fit: contain; }
+.object-fit-fill { object-fit: fill; }
 
 /* Progress Bar Animations */
 .progress-bar {
@@ -81,45 +155,63 @@
 /* Custom Button Styles */
 .btn {
     transition: all 0.3s ease;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn:hover {
     transform: translateY(-2px);
 }
 
-/* Card Hover Effects */
-.card {
-    transition: all 0.3s ease;
+/* Крупные цели на устройствах с pointer:coarse */
+@media (pointer: coarse){
+    a, button, .nav-link { 
+        min-height: 44px; 
+        padding: .75rem 1rem; 
+    }
 }
 
-.card:hover {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+/* Уважение к снижению движения */
+@media (prefers-reduced-motion: reduce) {
+    * { 
+        animation: none !important; 
+        transition: none !important; 
+    }
+    
+    .project-card:hover {
+        transform: none;
+    }
 }
 
-/* Navigation Active State */
-.navbar-nav .nav-link.active {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 0.375rem;
+/* Повышенный контраст */
+@media (prefers-contrast: more) {
+    .btn, .project-card { 
+        box-shadow: inset 0 0 0 2px #fff; 
+    }
 }
 
-/* Form Focus Styles */
-.form-control:focus {
-    border-color: #0d6efd;
-    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
-}
+/* Темная тема */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: #e2e8f0;
+        --bg-color: #0f172a;
+        --border-color: #334155;
+    }
 
-/* Badge Styles */
-.badge {
-    font-size: 0.75em;
-}
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
 
-/* Social Icons */
-.bi {
-    transition: color 0.3s ease;
-}
+    .card {
+        background: #1e293b;
+    }
 
-.bi:hover {
-    color: #0d6efd !important;
+    .text-muted {
+        color: #94a3b8 !important;
+    }
 }
 
 /* Responsive Adjustments */
@@ -129,13 +221,19 @@
         height: 200px;
     }
     
-    .display-5 {
-        font-size: 2rem;
+    .projects-preview-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
     
-    .lead {
-        font-size: 1rem;
+    .hero-heading {
+        font-size: 1.8rem;
     }
+}
+
+/* Safe areas для футера */
+.footer {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
 }
 
 /* Print Styles */
@@ -178,10 +276,107 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #0d6efd;
+    background: var(--primary-color);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background: #0b5ed7;
+}
+
+/* Стили для страницы адаптивных изображений */
+.retina-image {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+}
+
+.tech-badge {
+    background: #e2e8f0;
+    color: #475569;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-family: monospace;
+    display: inline-block;
+}
+
+.code-example {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 1rem;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.875rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+    line-height: 1.4;
+}
+
+.demo-section {
+    background: white;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    border-radius: var(--radius, 8px);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.image-container {
+    border: 2px dashed var(--border-color, #e2e8f0);
+    border-radius: var(--radius, 8px);
+    padding: 1rem;
+    background: #f8fafc;
+    margin-bottom: 1rem;
+}
+
+/* Контейнерные запросы для демо-страницы */
+@supports (container-type: inline-size) {
+    .image-demo {
+        container-type: inline-size;
+        container-name: image-demo;
+    }
+
+    @container image-demo (min-width: 600px) {
+        .demo-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+/* Анимации для демо-страницы */
+.demo-section {
+    animation: fadeIn 0.6s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.demo-section:nth-child(odd) {
+    animation: slideIn 0.6s ease;
+}
+
+/* Темная тема для code examples */
+@media (prefers-color-scheme: dark) {
+    .code-example {
+        background: #0f172a;
+        color: #e2e8f0;
+    }
+    
+    .tech-badge {
+        background: #334155;
+        color: #cbd5e1;
+    }
+}
+.img{
+    border-radius: 15px;
+    max-width: 100%;
 }

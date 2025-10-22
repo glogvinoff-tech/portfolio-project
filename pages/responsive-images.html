@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Портфолио - Адаптивные изображения</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        .image-demo {
+            container-type: inline-size;
+            margin-bottom: 2rem;
+        }
+        
+        .demo-section {
+            background: white;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-radius: var(--radius, 8px);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        
+        .demo-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .image-container {
+            border: 2px dashed var(--border-color, #e2e8f0);
+            border-radius: var(--radius, 8px);
+            padding: 1rem;
+            background: #f8fafc;
+            margin-bottom: 1rem;
+        }
+        
+        @container (min-width: 600px) {
+            .demo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .tech-badge {
+            background: #e2e8f0;
+            color: #475569;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-family: monospace;
+        }
+        
+        .code-example {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <!-- Skip Link для доступности -->
+    <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+
+    <div class="container-fluid p-0">
+        <!-- Header -->
+        <header class="bg-primary text-white py-4 nav-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h1 class="h3 mb-1">Логвинов Глеб</h1>
+                        <p class="mb-0 opacity-75">Адаптивные изображения</p>
+                    </div>
+                    <div class="col-auto">
+                        <span class="badge bg-light text-primary">Демо</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Основная навигация">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Переключить навигацию">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">
+                                <i class="bi bi-house me-1"></i>Главная
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="projects.html">
+                                <i class="bi bi-folder me-1"></i>Проекты
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="diary.html">
+                                <i class="bi bi-journal me-1"></i>Дневник
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contacts.html">
+                                <i class="bi bi-telephone me-1"></i>Контакты
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="responsive-images.html" aria-current="page">
+                                <i class="bi bi-images me-1"></i>Изображения
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main id="main" class="container my-5">
+            <!-- Page Header -->
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="display-5 fw-bold text-primary mb-3">Адаптивные изображения</h2>
+                    <p class="lead text-muted">Демонстрация современных техник работы с изображениями</p>
+                </div>
+            </div>
+
+            <div class="image-demo">
+                <!-- Секция 1: Art Direction -->
+                <section class="demo-section" aria-labelledby="art-direction-heading">
+                    <h3 id="art-direction-heading" class="h4 mb-3">
+                        <i class="bi bi-layout-split text-primary me-2"></i>Art Direction
+                    </h3>
+                    <p class="text-muted mb-4">Разные изображения для разных размеров экрана с помощью <span class="tech-badge">picture</span> элемента</p>
+                    
+                    <div class="image-container">
+                        <picture>
+                            <source media="(min-width: 1200px)" srcset="../images/wide-desktop.jpg">
+                            <source media="(min-width: 768px)" srcset="../images/tablet.jpg">
+                            <img src="../images/mobile.jpg" alt="Адаптивное изображение для разных устройств" 
+                                 class="responsive-image" loading="lazy">
+                        </picture>
+                    </div>
+                    
+                    <div class="code-example">
+&lt;picture&gt;<br>
+&nbsp;&nbsp;&lt;source media="(min-width: 1200px)" srcset="wide-desktop.jpg"&gt;<br>
+&nbsp;&nbsp;&lt;source media="(min-width: 768px)" srcset="tablet.jpg"&gt;<br>
+&nbsp;&nbsp;&lt;img src="mobile.jpg" alt="..." class="responsive-image"&gt;<br>
+&lt;/picture&gt;
+                    </div>
+                    
+                    <div class="explanation">
+                        <h4 class="h6 text-primary mb-2">Что происходит:</h4>
+                        <ul class="mb-0">
+                            <li>Десктопы (1200px+): загружается wide-desktop.jpg</li>
+                            <li>Планшеты (768px-1199px): загружается tablet.jpg</li>
+                            <li>Мобильные (до 767px): загружается mobile.jpg</li>
+                            <li>Браузер автоматически выбирает подходящее изображение</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Секция 2: Resolution Switching -->
+                <section class="demo-section" aria-labelledby="resolution-heading">
+                    <h3 id="resolution-heading" class="h4 mb-3">
+                        <i class="bi bi-display text-success me-2"></i>Resolution Switching
+                    </h3>
+                    <p class="text-muted mb-4">Поддержка Retina и HiDPI экранов с помощью <span class="tech-badge">srcset</span></p>
+                    
+                    <div class="image-container text-center">
+                        <img src="../images/icon@1x.png"
+                             srcset="../images/icon@1x.png 1x, ../images/icon@2x.png 2x"
+                             alt="Иконка с поддержкой Retina"
+                             class="retina-image"
+                             loading="lazy">
+                    </div>
+                    
+                    <div class="code-example">
+&lt;img src="icon@1x.png"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;srcset="icon@1x.png 1x, icon@2x.png 2x"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;alt="..." class="retina-image"&gt;
+                    </div>
+                    
+                    <div class="explanation">
+                        <h4 class="h6 text-primary mb-2">Что происходит:</h4>
+                        <ul class="mb-0">
+                            <li>Обычные экраны: загружается icon@1x.png</li>
+                            <li>Retina экраны: автоматически загружается icon@2x.png (в 2 раза четче)</li>
+                            <li>Автоматическое определение плотности пикселей устройства</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Секция 3: Modern Formats -->
+                <section class="demo-section" aria-labelledby="formats-heading">
+                    <h3 id="formats-heading" class="h4 mb-3">
+                        <i class="bi bi-file-earmark-image text-warning me-2"></i>Современные форматы
+                    </h3>
+                    <p class="text-muted mb-4">Использование AVIF и WebP с fallback для старых браузеров</p>
+                    
+                    <div class="image-container">
+                        <picture>
+                            <!-- AVIF для современных браузеров -->
+                            <source type="image/avif" srcset="../images/portrait.avif">
+                            <!-- WebP для хорошей поддержки -->
+                            <source type="image/webp" srcset="../images/portrait.webp">
+                            <!-- JPEG fallback -->
+                            <img src="../images/portrait.jpg" alt="Портрет в современных форматах" 
+                                 class="responsive-image" loading="lazy">
+                        </picture>
+                    </div>
+                    
+                    <div class="code-example">
+&lt;picture&gt;<br>
+&nbsp;&nbsp;&lt;source type="image/avif" srcset="portrait.avif"&gt;<br>
+&nbsp;&nbsp;&lt;source type="image/webp" srcset="portrait.webp"&gt;<br>
+&nbsp;&nbsp;&lt;img src="portrait.jpg" alt="..." class="responsive-image"&gt;<br>
+&lt;/picture&gt;
+                    </div>
+                    
+                    <div class="explanation">
+                        <h4 class="h6 text-primary mb-2">Что происходит:</h4>
+                        <ul class="mb-0">
+                            <li>Современные браузеры: выбирают AVIF (лучшее сжатие)</li>
+                            <li>Браузеры с поддержкой WebP: выбирают WebP</li>
+                            <li>Старые браузеры: загружают JPEG fallback</li>
+                            <li>Автоматическое переключение между форматами</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Секция 4: Object-fit -->
+                <section class="demo-section" aria-labelledby="object-fit-heading">
+                    <h3 id="object-fit-heading" class="h4 mb-3">
+                        <i class="bi bi-aspect-ratio text-info me-2"></i>Object-fit свойства
+                    </h3>
+                    <p class="text-muted mb-4">Контроль заполнения контейнера изображением с помощью <span class="tech-badge">object-fit</span></p>
+                    
+                    <div class="demo-grid">
+                        <div class="text-center">
+                            <div class="image-container">
+                                <img src="../images/square.jpg" alt="Cover пример" 
+                                     class="responsive-image object-fit-cover" style="height: 200px; width: 100%;">
+                            </div>
+                            <span class="tech-badge">object-fit: cover</span>
+                            <p class="small text-muted mt-2">Заполняет контейнер, обрезая края</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="image-container">
+                                <img src="../images/square.jpg" alt="Contain пример" 
+                                     class="responsive-image object-fit-contain" style="height: 200px; width: 100%; background: #f1f5f9;">
+                            </div>
+                            <span class="tech-badge">object-fit: contain</span>
+                            <p class="small text-muted mt-2">Вписывает полностью, могут быть поля</p>
+                        </div>
+                    </div>
+                    
+                    <div class="code-example">
+/* Cover - заполняет с обрезкой */<br>
+.object-fit-cover { object-fit: cover; }<br><br>
+/* Contain - вписывает полностью */<br>
+.object-fit-contain { object-fit: contain; }
+                    </div>
+                </section>
+
+                <!-- Секция 5: Lazy Loading -->
+                <section class="demo-section" aria-labelledby="lazy-heading">
+                    <h3 id="lazy-heading" class="h4 mb-3">
+                        <i class="bi bi-hourglass-split text-purple me-2"></i>Lazy Loading
+                    </h3>
+                    <p class="text-muted mb-4">Оптимизация загрузки с помощью <span class="tech-badge">loading="lazy"</span></p>
+                    
+                    <div class="image-container">
+                        <img src="../images/gallery1.jpg" alt="Галерея 1 - Lazy loading" 
+                             class="responsive-image" loading="lazy">
+                    </div>
+                    
+                    <div class="code-example">
+&lt;img src="image.jpg" alt="..." loading="lazy"&gt;
+                    </div>
+                    
+                    <div class="explanation">
+                        <h4 class="h6 text-primary mb-2">Что происходит:</h4>
+                        <ul class="mb-0">
+                            <li>Изображение загружается только когда приближается к viewport</li>
+                            <li>Уменьшает начальный размер страницы</li>
+                            <li>Улучшает производительность загрузки</li>
+                            <li>Особенно полезно для длинных страниц с многими изображениями</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-dark text-white py-4 mt-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p class="mb-0">&copy; 2025 Портфолио студента. Все права защищены.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="contacts.html" class="text-white text-decoration-none">Контакты</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
