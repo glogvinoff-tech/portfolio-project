@@ -1,13 +1,93 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta name = "description" content="fdjgfdgfkjsdgfkjsfkjsdgkfgs">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>Портфолио - Дневник</title>
+    <title>Учебный дневник Логвинова Глеба - Студент-разработчик | Прогресс обучения</title>
+    <meta name="description" content="Учебный дневник Логвинова Глеба - отслеживание прогресса в веб-разработке, изучение HTML, CSS, JavaScript, React и других технологий.">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        .btn:focus,
+        .nav-link:focus,
+        .form-control:focus,
+        .form-select:focus {
+            outline: 2px solid #0066cc;
+            outline-offset: 2px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .timeline-content {
+            padding-left: 1rem;
+        }
+        
+        .completed .timeline-marker {
+            color: #198754;
+        }
+        
+        .in-progress .timeline-marker {
+            color: #ffc107;
+        }
+        
+        .planned .timeline-marker {
+            color: #6c757d;
+        }
+        
+        .progress {
+            background-color: #e9ecef;
+        }
+        
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #0066cc;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 10000;
+        }
+        
+        .skip-link:focus {
+            top: 6px;
+        }
+        
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        .required-field::after {
+            content: " *";
+            color: #dc3545;
+        }
+    </style>
 </head>
 <body class="bg-light">
     <!-- Skip Link для доступности -->
@@ -40,27 +120,27 @@
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" href="../index.html">
-                                <i class="bi bi-house me-1"></i>Главная
+                                <i class="bi bi-house me-1" aria-hidden="true"></i>Главная
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="projects.html">
-                                <i class="bi bi-folder me-1"></i>Проекты
+                                <i class="bi bi-folder me-1" aria-hidden="true"></i>Проекты
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="diary.html" aria-current="page">
-                                <i class="bi bi-journal me-1"></i>Дневник
+                                <i class="bi bi-journal me-1" aria-hidden="true"></i>Дневник
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="contacts.html">
-                                <i class="bi bi-telephone me-1"></i>Контакты
+                                <i class="bi bi-telephone me-1" aria-hidden="true"></i>Контакты
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="responsive-images.html">
-                                <i class="bi bi-images me-1"></i>Изображения
+                                <i class="bi bi-images me-1" aria-hidden="true"></i>Изображения
                             </a>
                         </li>
                     </ul>
@@ -73,7 +153,7 @@
             <!-- Page Header -->
             <div class="row mb-5">
                 <div class="col-12 text-center">
-                    <h2 class="display-5 fw-bold text-primary mb-3">Мой учебный прогресс</h2>
+                    <h1 class="display-5 fw-bold text-primary mb-3">Мой учебный прогресс</h1>
                     <p class="lead text-muted">Отслеживание образовательного пути и достижений</p>
                 </div>
             </div>
@@ -83,9 +163,9 @@
                 <div class="col-lg-8">
                     <div class="card shadow-sm">
                         <div class="card-header bg-light">
-                            <h3 class="card-title h4 mb-0">
-                                <i class="bi bi-list-check text-primary me-2"></i>История обучения
-                            </h3>
+                            <h2 class="card-title h4 mb-0">
+                                <i class="bi bi-list-check text-primary me-2" aria-hidden="true"></i>История обучения
+                            </h2>
                         </div>
                         <div class="card-body">
                             <div class="timeline" role="list" aria-label="Хронология обучения">
@@ -93,9 +173,10 @@
                                 <div class="timeline-item completed" role="listitem">
                                     <div class="timeline-marker">
                                         <i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i>
+                                        <span class="visually-hidden">Завершено</span>
                                     </div>
                                     <div class="timeline-content">
-                                        <h4 class="h6 mb-1">Верстка макета сайта</h4>
+                                        <h3 class="h6 mb-1">Верстка макета сайта</h3>
                                         <p class="text-muted mb-1">Завершено создание адаптивного макета</p>
                                         <small class="text-muted">
                                             <time datetime="2024-12-15">15 декабря 2024</time>
@@ -107,9 +188,10 @@
                                 <div class="timeline-item completed" role="listitem">
                                     <div class="timeline-marker">
                                         <i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i>
+                                        <span class="visually-hidden">Завершено</span>
                                     </div>
                                     <div class="timeline-content">
-                                        <h4 class="h6 mb-1">JavaScript основы</h4>
+                                        <h3 class="h6 mb-1">JavaScript основы</h3>
                                         <p class="text-muted mb-1">Изучены базовые концепции JavaScript</p>
                                         <small class="text-muted">
                                             <time datetime="2024-12-10">10 декабря 2024</time>
@@ -121,9 +203,10 @@
                                 <div class="timeline-item in-progress" role="listitem">
                                     <div class="timeline-marker">
                                         <i class="bi bi-arrow-clockwise text-warning" aria-hidden="true"></i>
+                                        <span class="visually-hidden">В процессе</span>
                                     </div>
                                     <div class="timeline-content">
-                                        <h4 class="h6 mb-1">Работа с формами</h4>
+                                        <h3 class="h6 mb-1">Работа с формами</h3>
                                         <p class="text-muted mb-1">Валидация и обработка пользовательского ввода</p>
                                         <small class="text-muted">
                                             <time datetime="2024-12-05">5 декабря 2024</time> - в процессе
@@ -135,9 +218,10 @@
                                 <div class="timeline-item in-progress" role="listitem">
                                     <div class="timeline-marker">
                                         <i class="bi bi-arrow-clockwise text-warning" aria-hidden="true"></i>
+                                        <span class="visually-hidden">В процессе</span>
                                     </div>
                                     <div class="timeline-content">
-                                        <h4 class="h6 mb-1">Адаптивный дизайн</h4>
+                                        <h3 class="h6 mb-1">Адаптивный дизайн</h3>
                                         <p class="text-muted mb-1">Создание mobile-first интерфейсов</p>
                                         <small class="text-muted">
                                             <time datetime="2024-12-01">1 декабря 2024</time> - в процессе
@@ -149,9 +233,10 @@
                                 <div class="timeline-item planned" role="listitem">
                                     <div class="timeline-marker">
                                         <i class="bi bi-circle text-secondary" aria-hidden="true"></i>
+                                        <span class="visually-hidden">Запланировано</span>
                                     </div>
                                     <div class="timeline-content">
-                                        <h4 class="h6 mb-1">React компоненты</h4>
+                                        <h3 class="h6 mb-1">React компоненты</h3>
                                         <p class="text-muted mb-1">Создание переиспользуемых компонентов</p>
                                         <small class="text-muted">Запланировано на январь</small>
                                     </div>
@@ -161,9 +246,10 @@
                                 <div class="timeline-item completed" role="listitem">
                                     <div class="timeline-marker">
                                         <i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i>
+                                        <span class="visually-hidden">Завершено</span>
                                     </div>
                                     <div class="timeline-content">
-                                        <h4 class="h6 mb-1">Адаптивные изображения</h4>
+                                        <h3 class="h6 mb-1">Адаптивные изображения</h3>
                                         <p class="text-muted mb-1">Изучение современных техник работы с изображениями</p>
                                         <small class="text-muted">
                                             <time datetime="2024-12-20">20 декабря 2024</time>
@@ -177,45 +263,57 @@
                     <!-- Add Entry Form -->
                     <div class="card shadow-sm mt-4">
                         <div class="card-header bg-light">
-                            <h3 class="card-title h4 mb-0">
-                                <i class="bi bi-plus-circle text-primary me-2"></i>Добавить запись
-                            </h3>
+                            <h2 class="card-title h4 mb-0">
+                                <i class="bi bi-plus-circle text-primary me-2" aria-hidden="true"></i>Добавить запись
+                            </h2>
                         </div>
                         <div class="card-body">
                             <form id="diaryForm" novalidate>
                                 <div class="row g-3">
                                     <div class="col-md-6">
-                                        <label for="entryTitle" class="form-label">Название *</label>
+                                        <label for="entryTitle" class="form-label required-field">Название</label>
                                         <input type="text" class="form-control" id="entryTitle" required
-                                               aria-describedby="entryTitleHelp">
+                                               aria-describedby="entryTitleHelp entryTitleError"
+                                               aria-required="true">
                                         <div id="entryTitleHelp" class="form-text">Краткое описание задачи или достижения</div>
-                                        <div class="invalid-feedback">Пожалуйста, введите название записи</div>
+                                        <div id="entryTitleError" class="invalid-feedback" aria-live="polite">
+                                            Пожалуйста, введите название записи
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="entryDate" class="form-label">Дата *</label>
-                                        <input type="date" class="form-control" id="entryDate" required>
-                                        <div class="invalid-feedback">Пожалуйста, выберите дату</div>
+                                        <label for="entryDate" class="form-label required-field">Дата</label>
+                                        <input type="date" class="form-control" id="entryDate" required
+                                               aria-describedby="entryDateError">
+                                        <div id="entryDateError" class="invalid-feedback" aria-live="polite">
+                                            Пожалуйста, выберите дату
+                                        </div>
                                     </div>
                                     <div class="col-12">
-                                        <label for="entryDescription" class="form-label">Описание *</label>
+                                        <label for="entryDescription" class="form-label required-field">Описание</label>
                                         <textarea class="form-control" id="entryDescription" rows="3" required
-                                                  aria-describedby="entryDescriptionHelp"></textarea>
+                                                  aria-describedby="entryDescriptionHelp entryDescriptionError"
+                                                  aria-required="true"></textarea>
                                         <div id="entryDescriptionHelp" class="form-text">Подробное описание выполненной работы</div>
-                                        <div class="invalid-feedback">Пожалуйста, введите описание</div>
+                                        <div id="entryDescriptionError" class="invalid-feedback" aria-live="polite">
+                                            Пожалуйста, введите описание
+                                        </div>
                                     </div>
                                     <div class="col-12">
-                                        <label for="entryStatus" class="form-label">Статус *</label>
-                                        <select class="form-select" id="entryStatus" required>
+                                        <label for="entryStatus" class="form-label required-field">Статус</label>
+                                        <select class="form-select" id="entryStatus" required
+                                                aria-describedby="entryStatusError">
                                             <option value="">Выберите статус...</option>
                                             <option value="completed">Завершено</option>
                                             <option value="in-progress">В процессе</option>
                                             <option value="planned">Запланировано</option>
                                         </select>
-                                        <div class="invalid-feedback">Пожалуйста, выберите статус</div>
+                                        <div id="entryStatusError" class="invalid-feedback" aria-live="polite">
+                                            Пожалуйста, выберите статус
+                                        </div>
                                     </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary">
-                                            <i class="bi bi-plus me-1"></i>Добавить запись
+                                            <i class="bi bi-plus me-1" aria-hidden="true"></i>Добавить запись
                                         </button>
                                     </div>
                                 </div>
@@ -228,9 +326,9 @@
                 <div class="col-lg-4">
                     <div class="card shadow-sm">
                         <div class="card-header bg-light">
-                            <h3 class="card-title h4 mb-0">
-                                <i class="bi bi-book text-primary me-2"></i>Текущие курсы
-                            </h3>
+                            <h2 class="card-title h4 mb-0">
+                                <i class="bi bi-book text-primary me-2" aria-hidden="true"></i>Текущие курсы
+                            </h2>
                         </div>
                         <div class="card-body">
                             <!-- Course 1 -->
@@ -240,7 +338,8 @@
                                     <span class="text-primary">90%</span>
                                 </div>
                                 <div class="progress" style="height: 8px;" role="progressbar" 
-                                     aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                     aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"
+                                     aria-label="Прогресс курса Веб-разработка: 90%">
                                     <div class="progress-bar bg-primary" style="width: 90%"></div>
                                 </div>
                             </div>
@@ -252,7 +351,8 @@
                                     <span class="text-primary">70%</span>
                                 </div>
                                 <div class="progress" style="height: 8px;" role="progressbar"
-                                     aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                     aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+                                     aria-label="Прогресс курса JavaScript: 70%">
                                     <div class="progress-bar bg-success" style="width: 70%"></div>
                                 </div>
                             </div>
@@ -264,7 +364,8 @@
                                     <span class="text-primary">50%</span>
                                 </div>
                                 <div class="progress" style="height: 8px;" role="progressbar"
-                                     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
+                                     aria-label="Прогресс курса React: 50%">
                                     <div class="progress-bar bg-warning" style="width: 50%"></div>
                                 </div>
                             </div>
@@ -276,7 +377,8 @@
                                     <span class="text-primary">30%</span>
                                 </div>
                                 <div class="progress" style="height: 8px;" role="progressbar"
-                                     aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                     aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"
+                                     aria-label="Прогресс курса Базы данных: 30%">
                                     <div class="progress-bar bg-info" style="width: 30%"></div>
                                 </div>
                             </div>
@@ -288,7 +390,8 @@
                                     <span class="text-primary">85%</span>
                                 </div>
                                 <div class="progress" style="height: 8px;" role="progressbar"
-                                     aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                                     aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
+                                     aria-label="Прогресс курса Адаптивные изображения: 85%">
                                     <div class="progress-bar bg-purple" style="width: 85%"></div>
                                 </div>
                             </div>
@@ -300,19 +403,19 @@
                         <div class="card-body text-center">
                             <div class="row">
                                 <div class="col-6 mb-3">
-                                    <div class="display-6 text-primary fw-bold">13</div>
+                                    <div class="display-6 text-primary fw-bold" aria-label="13 завершенных задач">13</div>
                                     <div class="text-muted small">Завершено</div>
                                 </div>
                                 <div class="col-6 mb-3">
-                                    <div class="display-6 text-warning fw-bold">4</div>
+                                    <div class="display-6 text-warning fw-bold" aria-label="4 задачи в процессе">4</div>
                                     <div class="text-muted small">В процессе</div>
                                 </div>
                                 <div class="col-6">
-                                    <div class="display-6 text-info fw-bold">7</div>
+                                    <div class="display-6 text-info fw-bold" aria-label="7 курсов">7</div>
                                     <div class="text-muted small">Курсов</div>
                                 </div>
                                 <div class="col-6">
-                                    <div class="display-6 text-success fw-bold">87%</div>
+                                    <div class="display-6 text-success fw-bold" aria-label="87 процентов общий прогресс">87%</div>
                                     <div class="text-muted small">Общий прогресс</div>
                                 </div>
                             </div>
@@ -322,11 +425,11 @@
                     <!-- Images Demo Link -->
                     <div class="card shadow-sm mt-4 bg-info text-white">
                         <div class="card-body text-center">
-                            <i class="bi bi-images display-6 mb-3"></i>
-                            <h4 class="h6 mb-2">Изучили адаптивные изображения?</h4>
+                            <i class="bi bi-images display-6 mb-3" aria-hidden="true"></i>
+                            <h3 class="h6 mb-2">Изучили адаптивные изображения?</h3>
                             <p class="small opacity-75 mb-3">Посмотрите практическую демонстрацию</p>
-                            <a href="responsive-images.html" class="btn btn-light btn-sm">
-                                <i class="bi bi-arrow-right me-1"></i>Смотреть демо
+                            <a href="responsive-images.html" class="btn btn-light btn-sm" aria-label="Перейти к демонстрации адаптивных изображений">
+                                <i class="bi bi-arrow-right me-1" aria-hidden="true"></i>Смотреть демо
                             </a>
                         </div>
                     </div>
@@ -350,13 +453,13 @@
     </div>
 
     <!-- Success Modal -->
-    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title text-success h5" id="successModalLabel">
-                        <i class="bi bi-check-circle-fill me-2"></i>Успешно!
-                    </h3>
+                    <h2 class="modal-title text-success h5" id="successModalLabel">
+                        <i class="bi bi-check-circle-fill me-2" aria-hidden="true"></i>Успешно!
+                    </h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
@@ -376,11 +479,22 @@
             const form = document.getElementById('diaryForm');
             const successModal = new bootstrap.Modal(document.getElementById('successModal'));
 
+            function announceMessage(message) {
+                const liveRegion = document.createElement('div');
+                liveRegion.setAttribute('aria-live', 'polite');
+                liveRegion.setAttribute('aria-atomic', 'true');
+                liveRegion.className = 'visually-hidden';
+                liveRegion.textContent = message;
+                document.body.appendChild(liveRegion);
+                setTimeout(() => document.body.removeChild(liveRegion), 3000);
+            }
+
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
                 if (!form.checkValidity()) {
                     form.classList.add('was-validated');
+                    announceMessage('В форме есть ошибки. Пожалуйста, исправьте их перед отправкой.');
                     return;
                 }
 
@@ -394,27 +508,65 @@
                 
                 // Show success modal
                 successModal.show();
+                announceMessage('Запись успешно добавлена в дневник обучения.');
                 
                 // Reset form
                 form.reset();
                 form.classList.remove('was-validated');
+                
+                // Сброс визуальных состояний
+                form.querySelectorAll('.is-valid, .is-invalid').forEach(el => {
+                    el.classList.remove('is-valid', 'is-invalid');
+                });
             });
 
             // Real-time validation
             form.querySelectorAll('input, textarea, select').forEach(input => {
                 input.addEventListener('input', function() {
+                    const errorElement = document.getElementById(this.id + 'Error');
+                    
                     if (this.checkValidity()) {
                         this.classList.remove('is-invalid');
                         this.classList.add('is-valid');
+                        if (errorElement) {
+                            errorElement.textContent = '';
+                        }
                     } else {
                         this.classList.remove('is-valid');
                         this.classList.add('is-invalid');
+                        if (errorElement) {
+                            errorElement.textContent = this.validationMessage;
+                        }
+                    }
+                });
+
+                input.addEventListener('blur', function() {
+                    if (!this.checkValidity()) {
+                        this.classList.add('is-invalid');
+                        const errorElement = document.getElementById(this.id + 'Error');
+                        if (errorElement) {
+                            errorElement.textContent = this.validationMessage;
+                        }
                     }
                 });
             });
 
             // Set today's date as default
             document.getElementById('entryDate').valueAsDate = new Date();
+
+            // Обработка Escape для модальных окон
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    const openModal = document.querySelector('.modal.show');
+                    if (openModal) {
+                        const modal = bootstrap.Modal.getInstance(openModal);
+                        modal.hide();
+                    }
+                }
+            });
+
+            // Объявление при загрузке
+            announceMessage('Страница учебного дневника загружена. Доступна хронология обучения и форма добавления записей.');
         });
     </script>
 </body>

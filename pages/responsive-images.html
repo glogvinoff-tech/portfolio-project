@@ -5,17 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Адаптивные изображения - Демонстрация современных техник | Портфолио Логвинова Глеба</title>
     <meta name="description" content="Демонстрация современных техник работы с адаптивными изображениями: Art Direction, Resolution Switching, WebP/AVIF форматы, lazy loading и object-fit. Примеры кода и лучшие практики.">
-    <meta name="keywords" content="адаптивные изображения, responsive images, art direction, webp, avif, lazy loading, object-fit, веб-разработка, оптимизация">
-    <meta name="author" content="Логвинов Глеб">
-    
-    <!-- Open Graph метатеги -->
-    <meta property="og:title" content="Адаптивные изображения - Современные техники веб-разработки">
-    <meta property="og:description" content="Демонстрация лучших практик работы с изображениями в веб-разработке">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourdomain.com/pages/responsive-images.html">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://yourdomain.com/pages/responsive-images.html">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -45,7 +34,7 @@
             padding: 1rem;
             background: #f8fafc;
             margin-bottom: 1rem;
-            overflow: hidden; /* Добавлено для корректного отображения */
+            overflow: hidden;
         }
         
         @container (min-width: 600px) {
@@ -74,7 +63,6 @@
             margin: 1rem 0;
         }
         
-        /* Исправления для правильного соотношения сторон */
         .responsive-image {
             max-width: 100%;
             height: auto;
@@ -82,9 +70,9 @@
         }
         
         .retina-image {
-            width: 100px; /* Фиксированная ширина для иконки */
-            height: 100px; /* Фиксированная высота для квадратной иконки */
-            object-fit: contain; /* Сохраняет пропорции без обрезки */
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
             display: block;
             margin: 0 auto;
         }
@@ -102,11 +90,44 @@
             background: #f1f5f9;
         }
         
-        /* Галерейные изображения с правильными пропорциями */
         .gallery-image {
             width: 100%;
             height: 250px;
             object-fit: cover;
+        }
+        
+        .btn:focus,
+        .nav-link:focus {
+            outline: 2px solid #0066cc;
+            outline-offset: 2px;
+        }
+        
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #0066cc;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 10000;
+        }
+        
+        .skip-link:focus {
+            top: 6px;
+        }
+        
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
     </style>
 </head>
@@ -141,27 +162,27 @@
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" href="../index.html">
-                                <i class="bi bi-house me-1"></i>Главная
+                                <i class="bi bi-house me-1" aria-hidden="true"></i>Главная
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="projects.html">
-                                <i class="bi bi-folder me-1"></i>Проекты
+                                <i class="bi bi-folder me-1" aria-hidden="true"></i>Проекты
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="diary.html">
-                                <i class="bi bi-journal me-1"></i>Дневник
+                                <i class="bi bi-journal me-1" aria-hidden="true"></i>Дневник
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="contacts.html">
-                                <i class="bi bi-telephone me-1"></i>Контакты
+                                <i class="bi bi-telephone me-1" aria-hidden="true"></i>Контакты
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="responsive-images.html" aria-current="page">
-                                <i class="bi bi-images me-1"></i>Изображения
+                                <i class="bi bi-images me-1" aria-hidden="true"></i>Изображения
                             </a>
                         </li>
                     </ul>
@@ -183,7 +204,7 @@
                 <!-- Секция 1: Art Direction -->
                 <section class="demo-section" aria-labelledby="art-direction-heading">
                     <h2 id="art-direction-heading" class="h4 mb-3">
-                        <i class="bi bi-layout-split text-primary me-2"></i>Art Direction
+                        <i class="bi bi-layout-split text-primary me-2" aria-hidden="true"></i>Art Direction
                     </h2>
                     <p class="text-muted mb-4">Разные изображения для разных размеров экрана с помощью <span class="tech-badge">picture</span> элемента</p>
                     
@@ -196,7 +217,7 @@
                         </picture>
                     </div>
                     
-                    <div class="code-example">
+                    <div class="code-example" role="region" aria-label="Пример кода Art Direction">
 &lt;picture&gt;<br>
 &nbsp;&nbsp;&lt;source media="(min-width: 1200px)" srcset="wide-desktop.jpg"&gt;<br>
 &nbsp;&nbsp;&lt;source media="(min-width: 768px)" srcset="tablet.jpg"&gt;<br>
@@ -218,7 +239,7 @@
                 <!-- Секция 2: Resolution Switching -->
                 <section class="demo-section" aria-labelledby="resolution-heading">
                     <h2 id="resolution-heading" class="h4 mb-3">
-                        <i class="bi bi-display text-success me-2"></i>Resolution Switching
+                        <i class="bi bi-display text-success me-2" aria-hidden="true"></i>Resolution Switching
                     </h2>
                     <p class="text-muted mb-4">Поддержка Retina и HiDPI экранов с помощью <span class="tech-badge">srcset</span></p>
                     
@@ -231,7 +252,7 @@
                              width="100" height="100">
                     </div>
                     
-                    <div class="code-example">
+                    <div class="code-example" role="region" aria-label="Пример кода Resolution Switching">
 &lt;img src="icon@1x.png"<br>
 &nbsp;&nbsp;&nbsp;&nbsp;srcset="icon@1x.png 1x, icon@2x.png 2x"<br>
 &nbsp;&nbsp;&nbsp;&nbsp;alt="..." class="retina-image"<br>
@@ -252,7 +273,7 @@
                 <!-- Секция 3: Modern Formats -->
                 <section class="demo-section" aria-labelledby="formats-heading">
                     <h2 id="formats-heading" class="h4 mb-3">
-                        <i class="bi bi-file-earmark-image text-warning me-2"></i>Современные форматы
+                        <i class="bi bi-file-earmark-image text-warning me-2" aria-hidden="true"></i>Современные форматы
                     </h2>
                     <p class="text-muted mb-4">Использование AVIF и WebP с fallback для старых браузеров</p>
                     
@@ -268,7 +289,7 @@
                         </picture>
                     </div>
                     
-                    <div class="code-example">
+                    <div class="code-example" role="region" aria-label="Пример кода современных форматов">
 &lt;picture&gt;<br>
 &nbsp;&nbsp;&lt;source type="image/avif" srcset="portrait.avif"&gt;<br>
 &nbsp;&nbsp;&lt;source type="image/webp" srcset="portrait.webp"&gt;<br>
@@ -290,7 +311,7 @@
                 <!-- Секция 4: Object-fit -->
                 <section class="demo-section" aria-labelledby="object-fit-heading">
                     <h2 id="object-fit-heading" class="h4 mb-3">
-                        <i class="bi bi-aspect-ratio text-info me-2"></i>Object-fit свойства
+                        <i class="bi bi-aspect-ratio text-info me-2" aria-hidden="true"></i>Object-fit свойства
                     </h2>
                     <p class="text-muted mb-4">Контроль заполнения контейнера изображением с помощью <span class="tech-badge">object-fit</span></p>
                     
@@ -314,7 +335,7 @@
                         </div>
                     </div>
                     
-                    <div class="code-example">
+                    <div class="code-example" role="region" aria-label="Пример кода Object-fit">
 /* Cover - заполняет с обрезкой */<br>
 .object-fit-cover { <br>
 &nbsp;&nbsp;object-fit: cover;<br>
@@ -333,7 +354,7 @@
                 <!-- Секция 5: Lazy Loading -->
                 <section class="demo-section" aria-labelledby="lazy-heading">
                     <h2 id="lazy-heading" class="h4 mb-3">
-                        <i class="bi bi-hourglass-split text-purple me-2"></i>Lazy Loading
+                        <i class="bi bi-hourglass-split text-purple me-2" aria-hidden="true"></i>Lazy Loading
                     </h2>
                     <p class="text-muted mb-4">Оптимизация загрузки с помощью <span class="tech-badge">loading="lazy"</span></p>
                     
@@ -342,7 +363,7 @@
                              class="gallery-image" loading="lazy" width="400" height="250">
                     </div>
                     
-                    <div class="code-example">
+                    <div class="code-example" role="region" aria-label="Пример кода Lazy Loading">
 &lt;img src="image.jpg" alt="..." <br>
 &nbsp;&nbsp;&nbsp;&nbsp;class="gallery-image" <br>
 &nbsp;&nbsp;&nbsp;&nbsp;loading="lazy"<br>
@@ -379,6 +400,43 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Объявление для скринридеров при загрузке
+            const liveRegion = document.createElement('div');
+            liveRegion.setAttribute('aria-live', 'polite');
+            liveRegion.setAttribute('aria-atomic', 'true');
+            liveRegion.className = 'visually-hidden';
+            liveRegion.textContent = 'Демонстрация адаптивных изображений загружена. Доступно 5 разделов с примерами современных техник работы с изображениями.';
+            document.body.appendChild(liveRegion);
+            setTimeout(() => document.body.removeChild(liveRegion), 3000);
+
+            // Добавляем навигацию по разделам с клавиатуры
+            const sections = document.querySelectorAll('.demo-section');
+            sections.forEach((section, index) => {
+                const heading = section.querySelector('h2');
+                if (heading) {
+                    section.setAttribute('tabindex', '0');
+                    section.setAttribute('role', 'region');
+                    
+                    section.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            heading.focus();
+                        }
+                    });
+                }
+            });
+
+            // Обработка Escape для сброса фокуса
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    document.activeElement.blur();
+                }
+            });
+        });
+    </script>
+
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">
     {

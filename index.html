@@ -9,6 +9,45 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="styles/styles.css">
+    <style>
+        /* Стили для доступности */
+        .btn:focus,
+        .nav-link:focus,
+        .form-control:focus {
+            outline: 2px solid #0066cc;
+            outline-offset: 2px;
+        }
+        
+        .progress {
+            background-color: #e9ecef;
+        }
+        
+        .project-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .project-card:focus,
+        .project-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #0066cc;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 10000;
+        }
+        
+        .skip-link:focus {
+            top: 6px;
+        }
+    </style>
 </head>
 <body class="bg-light">
     <!-- Skip Link для доступности -->
@@ -41,27 +80,27 @@
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link active" href="index.html" aria-current="page">
-                                <i class="bi bi-house me-1"></i>Главная
+                                <i class="bi bi-house me-1" aria-hidden="true"></i>Главная
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="pages/projects.html">
-                                <i class="bi bi-folder me-1"></i>Проекты
+                                <i class="bi bi-folder me-1" aria-hidden="true"></i>Проекты
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="pages/diary.html">
-                                <i class="bi bi-journal me-1"></i>Дневник
+                                <i class="bi bi-journal me-1" aria-hidden="true"></i>Дневник
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="pages/contacts.html">
-                                <i class="bi bi-telephone me-1"></i>Контакты
+                                <i class="bi bi-telephone me-1" aria-hidden="true"></i>Контакты
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="pages/responsive-images.html">
-                                <i class="bi bi-images me-1"></i>Изображения
+                                <i class="bi bi-images me-1" aria-hidden="true"></i>Изображения
                             </a>
                         </li>
                     </ul>
@@ -79,29 +118,26 @@
                         Группы <strong>ЭФБО-14-24</strong><br>
                         Увлекаюсь веб-разработкой и созданием современных пользовательских интерфейсов.
                     </p>
-                    <a href="assets/5 сайтов.pdf" class="btn btn-primary btn-lg" download>
-                        <i class="bi bi-download me-2"></i>Скачать резюме
+                    <a href="assets/5 сайтов.pdf" class="btn btn-primary btn-lg" download aria-label="Скачать резюме в формате PDF">
+                        <i class="bi bi-download me-2" aria-hidden="true"></i>Скачать резюме
                     </a>
                 </div>
                 <div class="col-md-6 text-center">
                     <figure class="hero-image">
-                        <!-- ПРОСТОЙ ВАРИАНТ - используем базовый путь -->
                         <img src="images/ff.png" 
                              alt="Фото Логвинова Глеба - студента-разработчика" 
                              class="img-fluid rounded-circle profile-image"
                              width="300" 
                              height="300">
-                        <!-- Убрали loading="eager" для упрощения -->
                     </figure>
                 </div>
             </section>
 
-            <!-- Остальной контент без изменений -->
             <!-- Skills Section -->
             <section class="card shadow-sm mb-5" aria-labelledby="skills-heading">
                 <div class="card-header bg-light">
                     <h2 id="skills-heading" class="card-title h4 mb-0">
-                        <i class="bi bi-tools text-primary me-2"></i>Мои навыки в веб-разработке
+                        <i class="bi bi-tools text-primary me-2" aria-hidden="true"></i>Мои навыки в веб-разработке
                     </h2>
                 </div>
                 <div class="card-body">
@@ -112,7 +148,9 @@
                                     <span class="fw-semibold">HTML/CSS</span>
                                     <span class="text-primary">90%</span>
                                 </div>
-                                <div class="progress" style="height: 10px;">
+                                <div class="progress" style="height: 10px;" role="progressbar" 
+                                     aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"
+                                     aria-label="Уровень навыка HTML/CSS: 90%">
                                     <div class="progress-bar bg-primary" style="width: 90%"></div>
                                 </div>
                             </div>
@@ -121,7 +159,9 @@
                                     <span class="fw-semibold">JavaScript</span>
                                     <span class="text-primary">80%</span>
                                 </div>
-                                <div class="progress" style="height: 10px;">
+                                <div class="progress" style="height: 10px;" role="progressbar" 
+                                     aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                                     aria-label="Уровень навыка JavaScript: 80%">
                                     <div class="progress-bar bg-success" style="width: 80%"></div>
                                 </div>
                             </div>
@@ -132,7 +172,9 @@
                                     <span class="fw-semibold">Bootstrap</span>
                                     <span class="text-primary">85%</span>
                                 </div>
-                                <div class="progress" style="height: 10px;">
+                                <div class="progress" style="height: 10px;" role="progressbar" 
+                                     aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
+                                     aria-label="Уровень навыка Bootstrap: 85%">
                                     <div class="progress-bar bg-info" style="width: 85%"></div>
                                 </div>
                             </div>
@@ -141,7 +183,9 @@
                                     <span class="fw-semibold">React</span>
                                     <span class="text-primary">60%</span>
                                 </div>
-                                <div class="progress" style="height: 10px;">
+                                <div class="progress" style="height: 10px;" role="progressbar" 
+                                     aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                                     aria-label="Уровень навыка React: 60%">
                                     <div class="progress-bar bg-warning" style="width: 60%"></div>
                                 </div>
                             </div>
@@ -155,30 +199,30 @@
                 <div class="card shadow-sm">
                     <div class="card-header bg-light">
                         <h2 id="projects-heading" class="card-title h4 mb-0">
-                            <i class="bi bi-star text-primary me-2"></i>Лучшие проекты по веб-разработке
+                            <i class="bi bi-star text-primary me-2" aria-hidden="true"></i>Лучшие проекты по веб-разработке
                         </h2>
                     </div>
                     <div class="card-body">
-                        <div class="projects-preview-grid">
-                            <div class="project-card">
+                        <div class="projects-preview-grid" role="list" aria-label="Список лучших проектов">
+                            <div class="project-card" role="listitem" tabindex="0">
                                 <div class="card-body text-center">
-                                    <i class="bi bi-laptop display-4 text-primary mb-3"></i>
+                                    <i class="bi bi-laptop display-4 text-primary mb-3" aria-hidden="true"></i>
                                     <h3 class="card-title h5">Личный сайт</h3>
                                     <p class="card-text text-muted">Адаптивный веб-сайт с современным дизайном</p>
                                     <span class="badge bg-primary">HTML/CSS</span>
                                 </div>
                             </div>
-                            <div class="project-card">
+                            <div class="project-card" role="listitem" tabindex="0">
                                 <div class="card-body text-center">
-                                    <i class="bi bi-check-square display-4 text-success mb-3"></i>
+                                    <i class="bi bi-check-square display-4 text-success mb-3" aria-hidden="true"></i>
                                     <h3 class="card-title h5">Todo-приложение</h3>
                                     <p class="card-text text-muted">Приложение для управления задачами</p>
                                     <span class="badge bg-success">JavaScript</span>
                                 </div>
                             </div>
-                            <div class="project-card">
+                            <div class="project-card" role="listitem" tabindex="0">
                                 <div class="card-body text-center">
-                                    <i class="bi bi-cart display-4 text-warning mb-3"></i>
+                                    <i class="bi bi-cart display-4 text-warning mb-3" aria-hidden="true"></i>
                                     <h3 class="card-title h5">Интернет-магазин</h3>
                                     <p class="card-text text-muted">Прототип онлайн-магазина</p>
                                     <span class="badge bg-warning">React</span>
@@ -186,8 +230,8 @@
                             </div>
                         </div>
                         <div class="text-center mt-4">
-                            <a href="pages/projects.html" class="btn btn-outline-primary">
-                                <i class="bi bi-arrow-right me-1"></i>Все проекты
+                            <a href="pages/projects.html" class="btn btn-outline-primary" aria-label="Посмотреть все проекты">
+                                <i class="bi bi-arrow-right me-1" aria-hidden="true"></i>Все проекты
                             </a>
                         </div>
                     </div>
@@ -211,5 +255,36 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Улучшенная навигация для карточек проектов
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            projectCards.forEach(card => {
+                // Навигация с клавиатуры
+                card.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        // В реальном проекте здесь была бы навигация на страницу проекта
+                        const title = this.querySelector('.card-title').textContent;
+                        console.log('Открыт проект:', title);
+                    }
+                });
+                
+                // Атрибуты для скринридеров
+                card.setAttribute('role', 'button');
+                card.setAttribute('aria-label', `Проект: ${card.querySelector('.card-title').textContent}. ${card.querySelector('.card-text').textContent}`);
+            });
+
+            // Объявление для скринридеров при загрузке
+            const liveRegion = document.createElement('div');
+            liveRegion.setAttribute('aria-live', 'polite');
+            liveRegion.setAttribute('aria-atomic', 'true');
+            liveRegion.className = 'visually-hidden';
+            liveRegion.textContent = 'Главная страница портфолио загружена';
+            document.body.appendChild(liveRegion);
+            setTimeout(() => document.body.removeChild(liveRegion), 1000);
+        });
+    </script>
 </body>
 </html>

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta name = "distraction" content="fdjgfdgfkjsdgfkjsfkjsdgkfgs">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Контакты Логвинова Глеба - Студент-разработчик | Связь и сотрудничество</title>
@@ -21,6 +20,42 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        /* Стили для доступности */
+        .form-control:focus,
+        .form-select:focus,
+        .btn:focus {
+            outline: 2px solid #0066cc;
+            outline-offset: 2px;
+        }
+        
+        .is-invalid:focus {
+            outline-color: #dc3545;
+        }
+        
+        .is-valid:focus {
+            outline-color: #198754;
+        }
+        
+        /* Скрытый текст для скринридеров */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* Индикатор обязательных полей */
+        .required-field::after {
+            content: " *";
+            color: #dc3545;
+        }
+    </style>
 </head>
 <body class="bg-light">
     <!-- Skip Link для доступности -->
@@ -102,50 +137,82 @@
                         </div>
                         <div class="card-body">
                             <form id="contactForm" novalidate>
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label for="name" class="form-label">Имя *</label>
-                                        <input type="text" class="form-control" id="name" required
-                                               aria-describedby="nameHelp">
-                                        <div id="nameHelp" class="form-text">Ваше полное имя</div>
-                                        <div class="invalid-feedback">Пожалуйста, введите ваше имя</div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="email" class="form-label">Email *</label>
-                                        <input type="email" class="form-control" id="email" required
-                                               aria-describedby="emailHelp">
-                                        <div id="emailHelp" class="form-text">Мы не передаем ваш email третьим лицам</div>
-                                        <div class="invalid-feedback">Пожалуйста, введите корректный email</div>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="subject" class="form-label">Тема *</label>
-                                        <input type="text" class="form-control" id="subject" required
-                                               aria-describedby="subjectHelp">
-                                        <div id="subjectHelp" class="form-text">Краткое описание вашего вопроса</div>
-                                        <div class="invalid-feedback">Пожалуйста, введите тему сообщения</div>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="message" class="form-label">Сообщение *</label>
-                                        <textarea class="form-control" id="message" rows="5" required
-                                                  aria-describedby="messageHelp"></textarea>
-                                        <div id="messageHelp" class="form-text">Опишите подробно ваш вопрос или предложение</div>
-                                        <div class="invalid-feedback">Пожалуйста, введите ваше сообщение</div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="consent" required>
-                                            <label class="form-check-label" for="consent">
-                                                Я согласен на обработку моих персональных данных
-                                            </label>
-                                            <div class="invalid-feedback">Необходимо ваше согласие</div>
+                                <!-- Группа полей для личной информации -->
+                                <fieldset class="mb-4">
+                                    <legend class="h5 mb-3">Личная информация</legend>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label for="name" class="form-label required-field">Имя</label>
+                                            <input type="text" class="form-control" id="name" required
+                                                   aria-describedby="nameHelp nameError"
+                                                   aria-required="true">
+                                            <div id="nameHelp" class="form-text">Ваше полное имя</div>
+                                            <div id="nameError" class="invalid-feedback" aria-live="polite">
+                                                Пожалуйста, введите ваше имя
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="email" class="form-label required-field">Email</label>
+                                            <input type="email" class="form-control" id="email" required
+                                                   aria-describedby="emailHelp emailError"
+                                                   aria-required="true">
+                                            <div id="emailHelp" class="form-text">Мы не передаем ваш email третьим лицам</div>
+                                            <div id="emailError" class="invalid-feedback" aria-live="polite">
+                                                Пожалуйста, введите корректный email
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-12">
-                                        <button type="submit" class="btn btn-primary btn-lg">
-                                            <i class="bi bi-send me-2"></i>Отправить сообщение
-                                        </button>
+                                </fieldset>
+
+                                <!-- Группа полей для сообщения -->
+                                <fieldset class="mb-4">
+                                    <legend class="h5 mb-3">Сообщение</legend>
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <label for="subject" class="form-label required-field">Тема</label>
+                                            <input type="text" class="form-control" id="subject" required
+                                                   aria-describedby="subjectHelp subjectError"
+                                                   aria-required="true">
+                                            <div id="subjectHelp" class="form-text">Краткое описание вашего вопроса</div>
+                                            <div id="subjectError" class="invalid-feedback" aria-live="polite">
+                                                Пожалуйста, введите тему сообщения
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="message" class="form-label required-field">Сообщение</label>
+                                            <textarea class="form-control" id="message" rows="5" required
+                                                      aria-describedby="messageHelp messageError"
+                                                      aria-required="true"></textarea>
+                                            <div id="messageHelp" class="form-text">Опишите подробно ваш вопрос или предложение</div>
+                                            <div id="messageError" class="invalid-feedback" aria-live="polite">
+                                                Пожалуйста, введите ваше сообщение
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <!-- Соглашение -->
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="consent" required
+                                               aria-describedby="consentError">
+                                        <label class="form-check-label required-field" for="consent">
+                                            Я согласен на обработку моих персональных данных
+                                        </label>
+                                        <div id="consentError" class="invalid-feedback" aria-live="polite">
+                                            Необходимо ваше согласие
+                                        </div>
                                     </div>
                                 </div>
+                                
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="bi bi-send me-2"></i>Отправить сообщение
+                                    </button>
+                                </div>
+
+                                <!-- Область для динамических сообщений -->
+                                <div id="formMessages" aria-live="polite" aria-atomic="true" class="visually-hidden"></div>
                             </form>
                         </div>
                     </div>
@@ -333,6 +400,15 @@
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('contactForm');
             const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+            const formMessages = document.getElementById('formMessages');
+
+            // Функция для объявления сообщений для скринридеров
+            function announceMessage(message) {
+                formMessages.textContent = message;
+                setTimeout(() => {
+                    formMessages.textContent = '';
+                }, 3000);
+            }
 
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
@@ -340,6 +416,7 @@
 
                 if (!form.checkValidity()) {
                     form.classList.add('was-validated');
+                    announceMessage('В форме есть ошибки. Пожалуйста, исправьте их перед отправкой.');
                     return;
                 }
 
@@ -355,35 +432,88 @@
                 
                 // Show success modal
                 successModal.show();
+                announceMessage('Форма успешно отправлена. Спасибо за ваше сообщение!');
                 
                 // Reset form
                 form.reset();
                 form.classList.remove('was-validated');
+                
+                // Сброс визуальных состояний валидации
+                form.querySelectorAll('.is-valid, .is-invalid').forEach(el => {
+                    el.classList.remove('is-valid', 'is-invalid');
+                });
             });
 
-            // Real-time validation
+            // Real-time validation with ARIA support
             form.querySelectorAll('input, textarea').forEach(input => {
                 input.addEventListener('input', function() {
+                    const errorElement = document.getElementById(this.id + 'Error');
+                    
                     if (this.checkValidity()) {
                         this.classList.remove('is-invalid');
                         this.classList.add('is-valid');
+                        if (errorElement) {
+                            errorElement.textContent = '';
+                        }
                     } else {
                         this.classList.remove('is-valid');
                         this.classList.add('is-invalid');
+                        if (errorElement && !this.validity.valid) {
+                            errorElement.textContent = this.validationMessage;
+                        }
+                    }
+                });
+
+                // Валидация при потере фокуса
+                input.addEventListener('blur', function() {
+                    if (!this.checkValidity()) {
+                        this.classList.add('is-invalid');
+                        const errorElement = document.getElementById(this.id + 'Error');
+                        if (errorElement) {
+                            errorElement.textContent = this.validationMessage;
+                        }
                     }
                 });
             });
 
             // Checkbox validation
             const consentCheckbox = document.getElementById('consent');
+            const consentError = document.getElementById('consentError');
+            
             consentCheckbox.addEventListener('change', function() {
                 if (this.checked) {
                     this.classList.remove('is-invalid');
                     this.classList.add('is-valid');
+                    consentError.textContent = '';
                 } else {
                     this.classList.remove('is-valid');
                     this.classList.add('is-invalid');
+                    consentError.textContent = 'Необходимо ваше согласие';
                 }
+            });
+
+            // Обработка клавиши Escape для модального окна
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    if (document.querySelector('.modal.show')) {
+                        successModal.hide();
+                    }
+                }
+            });
+
+            // Улучшенная навигация по форме с клавиатуры
+            form.querySelectorAll('input, textarea, button, select').forEach((element, index, array) => {
+                element.addEventListener('keydown', function(event) {
+                    if (event.key === 'Tab' && !event.shiftKey && index === array.length - 1) {
+                        // Если достигнут последний элемент, вернуться к первому
+                        event.preventDefault();
+                        array[0].focus();
+                    } else if (event.key === 'Tab' && event.shiftKey && index === 0) {
+                        // Если достигнут первый элемент при Shift+Tab, перейти к последнему
+                        event.preventDefault();
+                        array[array.length - 1].focus();
+                    }
+                });
             });
         });
     </script>
